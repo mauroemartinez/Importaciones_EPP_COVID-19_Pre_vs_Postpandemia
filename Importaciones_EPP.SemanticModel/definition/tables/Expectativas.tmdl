@@ -1,0 +1,28 @@
+/// Parámetro de escenario (what-if): porcentaje de crecimiento esperado para proyectar importaciones.
+table Expectativas
+	lineageTag: f8050f84-9f65-4e51-a4c4-5251455b98a0
+
+	/// Porcentaje de expectativa elegido en el control deslizante (0 si no hay selección).
+	measure 'Valor Expectativas' = SELECTEDVALUE ( Expectativas[Expectativas], 0 )
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 4130b9fc-a530-461f-971a-e1b24981434d
+
+	column Expectativas
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 62acb7c6-4971-45fc-901a-b9dcba00c821
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition Expectativas = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.1)
+
+	annotation PBI_Id = 502265b10eda4db49f22886a66eb48e6
+

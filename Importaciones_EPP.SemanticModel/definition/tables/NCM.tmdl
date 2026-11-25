@@ -1,0 +1,113 @@
+/// Posiciones arancelarias (NCM-SIM) del estudio, con su artículo y alícuotas de importación.
+table NCM
+	lineageTag: 2a4f1024-c77a-477d-aefd-4f866286e8be
+
+	/// Posición arancelaria con sufijo SIM.
+	column NCM-SIM
+		dataType: string
+		lineageTag: b7a9ef97-e286-4b47-9ca4-70a68ef3f906
+		summarizeBy: none
+		sourceColumn: NCM-SIM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Artículo al que corresponde la posición.
+	column Descripcion_NCM
+		dataType: string
+		lineageTag: 64b1112d-cce5-48fe-ba7a-9ccbfafa9666
+		summarizeBy: none
+		sourceColumn: Descripcion_NCM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Unidad estadística oficial de la posición.
+	column UD_Estadistica
+		dataType: string
+		lineageTag: 0a233352-9076-4664-b5ad-c4c08cf3fcb1
+		summarizeBy: none
+		sourceColumn: UD_Estadistica
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Derecho de importación extrazona.
+	column DIE
+		dataType: double
+		formatString: 0.0%
+		lineageTag: dc42ca8b-0e87-42ca-8aa9-ca9f6a8a8e34
+		summarizeBy: none
+		sourceColumn: DIE
+
+		annotation SummarizationSetBy = User
+
+	/// Tasa de estadística.
+	column TE
+		dataType: double
+		formatString: 0.0%
+		lineageTag: fb85bde3-74da-43d5-9e36-7db9fc9881cd
+		summarizeBy: none
+		sourceColumn: TE
+
+		annotation SummarizationSetBy = User
+
+	/// IVA.
+	column IVA
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 7e85e3ae-013c-4e01-af83-d64cefcf36ed
+		summarizeBy: none
+		sourceColumn: IVA
+
+		annotation SummarizationSetBy = User
+
+	/// IVA adicional.
+	column 'IVA AD'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 1da2b7c6-7c07-4d57-8508-f78b7ff8d26d
+		summarizeBy: none
+		sourceColumn: IVA AD
+
+		annotation SummarizationSetBy = User
+
+	/// Percepción de Ganancias.
+	column Ganancias
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 5991c7d0-5b18-497f-aabe-234ab8d5c257
+		summarizeBy: none
+		sourceColumn: Ganancias
+
+		annotation SummarizationSetBy = User
+
+	/// Percepción de Ingresos Brutos.
+	column IIBB
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 3ebfbded-7ab9-4f64-b876-3c787ba89432
+		summarizeBy: none
+		sourceColumn: IIBB
+
+		annotation SummarizationSetBy = User
+
+	partition NCM = m
+		mode: import
+		queryGroup: Dimensiones
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents(CarpetaDatos & ArchivoDatos), null, true),
+				    Hoja = Origen{[Item = "NCM", Kind = "Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars = true]),
+				    Tipos = Table.TransformColumnTypes(Encabezados, {{"NCM-SIM", type text}, {"UD_Estadistica", type text}, {"DIE", type number}, {"TE", type number}, {"IVA", type number}, {"IVA AD", type number}, {"Ganancias", type number}, {"IIBB", type number}, {"Descripcion_NCM", type text}}),
+				    Descripcion = Table.TransformColumns(Tipos, {{"Descripcion_NCM", Text.Proper, type text}}),
+				    Orden = Table.ReorderColumns(Descripcion, {"NCM-SIM", "Descripcion_NCM", "UD_Estadistica", "DIE", "TE", "IVA", "IVA AD", "Ganancias", "IIBB"})
+				in
+				    Orden
+
+	annotation PBI_ResultType = Table
+

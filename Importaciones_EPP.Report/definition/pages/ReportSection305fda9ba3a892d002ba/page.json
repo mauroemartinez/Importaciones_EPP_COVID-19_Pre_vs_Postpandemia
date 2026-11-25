@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ReportSection305fda9ba3a892d002ba",
+  "displayName": "Evolución Importaciones",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "Pod2",
+    "type": "Default",
+    "parameters": []
+  },
+  "visualInteractions": [
+    {
+      "source": "68403f8bd6d05b705e9a",
+      "target": "ac54762eb1a247182544",
+      "type": "DataFilter"
+    },
+    {
+      "source": "68403f8bd6d05b705e9a",
+      "target": "dce4ff33e93c507130c1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "68403f8bd6d05b705e9a",
+      "target": "e5b0f96784e8d915210c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ac54762eb1a247182544",
+      "target": "68403f8bd6d05b705e9a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ac54762eb1a247182544",
+      "target": "dce4ff33e93c507130c1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "dce4ff33e93c507130c1",
+      "target": "68403f8bd6d05b705e9a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "dce4ff33e93c507130c1",
+      "target": "ac54762eb1a247182544",
+      "type": "DataFilter"
+    }
+  ]
+}

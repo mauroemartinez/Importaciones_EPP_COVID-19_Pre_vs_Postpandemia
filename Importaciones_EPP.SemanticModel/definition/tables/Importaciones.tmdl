@@ -1,0 +1,195 @@
+/// Tabla de hechos: una fila por ítem de despacho de importación de EPP en Argentina (2018 a 2021). Fuente: Softrade.
+table Importaciones
+	lineageTag: 50605636-73ce-4a83-9363-44896047a44d
+
+	/// Identificador del despacho y número de ítem.
+	column 'Ítem Despacho'
+		dataType: string
+		lineageTag: 9bca9fcd-1744-43fd-80d8-5e3cc0574757
+		summarizeBy: none
+		sourceColumn: Ítem Despacho
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Fecha de oficialización del despacho. Se relaciona con Calendario.
+	column Fecha
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: fdc71ca8-f6a8-459e-8b9a-969cea18e06e
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column NCM-SIM
+		dataType: string
+		isHidden
+		lineageTag: b8a92d51-7b86-4e3b-8dc0-6d2718880824
+		summarizeBy: none
+		sourceColumn: NCM-SIM
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Artículo según la posición arancelaria (tabla NCM).
+	column Artículo
+		dataType: string
+		lineageTag: 18d16e4e-51f4-4dea-bc50-dd967fe4174f
+		summarizeBy: none
+		sourceColumn: Artículo
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column Importador
+		dataType: string
+		lineageTag: 8fb2b358-a9fe-47e3-ab3c-52586fceec9e
+		summarizeBy: none
+		sourceColumn: Importador
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column Aduana
+		dataType: string
+		isHidden
+		lineageTag: f392c5f0-1f2a-42aa-a66d-762bece64f34
+		summarizeBy: none
+		sourceColumn: Aduana
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Vía de transporte: Marítima, Aérea o Terrestre.
+	column 'Via Transporte'
+		dataType: string
+		lineageTag: 277f61d5-dc56-45c9-940c-6a3bef20238d
+		summarizeBy: none
+		sourceColumn: Via Transporte
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'País de Origen'
+		dataType: string
+		isHidden
+		lineageTag: fb2dafe2-53f7-4857-b089-a500b5c39a44
+		summarizeBy: none
+		sourceColumn: País de Origen
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// País desde donde se embarcó la mercadería (relación inactiva con la tabla de países).
+	column 'País de Procedencia'
+		dataType: string
+		isHidden
+		lineageTag: 7bed73e5-3319-4dff-a16d-1638afee21f5
+		summarizeBy: none
+		sourceColumn: País de Procedencia
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Valor FOB en dólares estadounidenses.
+	column 'USD FOB'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 586b204e-e5b4-4c29-b7e7-e5d05c13c8e8
+		summarizeBy: sum
+		sourceColumn: USD FOB
+
+		annotation SummarizationSetBy = User
+
+	/// Cantidad declarada en la unidad de medida original. No se puede sumar entre unidades distintas: usar Cantidad Unidades.
+	column Cantidad
+		dataType: int64
+		formatString: #,0
+		lineageTag: ba9c2134-01fe-460d-9c19-2f3425d9fc20
+		summarizeBy: none
+		sourceColumn: Cantidad
+
+		annotation SummarizationSetBy = User
+
+	column 'Unidad de Medida'
+		dataType: string
+		lineageTag: 599ff99a-97c5-457d-a652-5fadcb527c03
+		summarizeBy: none
+		sourceColumn: Unidad de Medida
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Cantidad convertida a unidades individuales: 1 par = 2, 1 docena = 12, 1 millar = 1.000. Vacía cuando el despacho no informa unidad.
+	column 'Cantidad Unidades'
+		dataType: int64
+		formatString: #,0
+		lineageTag: 3fb76270-f9dd-5a5b-a576-44c85512ed29
+		summarizeBy: sum
+		sourceColumn: Cantidad Unidades
+
+		annotation SummarizationSetBy = User
+
+	/// Marca normalizada: se unificaron variantes y errores de tipeo (función fnMarca).
+	column Marca
+		dataType: string
+		lineageTag: b917146c-64c4-4bf8-99c1-0e66697189aa
+		summarizeBy: none
+		sourceColumn: Marca
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	partition Importaciones = m
+		mode: import
+		queryGroup: Hechos
+		source =
+				let
+				    // Base de datos de Softrade guardada en la carpeta del parámetro CarpetaDatos (no se publica)
+				    Origen = Excel.Workbook(File.Contents(CarpetaDatos & ArchivoDatos), null, true),
+				    Datos = Origen{[Item = "Tabla1", Kind = "Table"]}[Data],
+				    ColumnasUtiles = Table.SelectColumns(Datos, {"Identificador", "Item", "Fecha", "NCM-SIM", "Importador", "Aduana", "Via Transporte", "País de Origen", "Pais de Procedencia", "U$S FOB", "Cantidad", "Unidad de Medida", "Marca - Sufijos"}),
+				    Tipos = Table.TransformColumnTypes(ColumnasUtiles, {{"Identificador", type text}, {"Item", type text}, {"Fecha", type date}, {"NCM-SIM", type text}, {"Importador", type text}, {"Aduana", type text}, {"Via Transporte", type text}, {"País de Origen", type text}, {"Pais de Procedencia", type text}, {"U$S FOB", type number}, {"Cantidad", Int64.Type}, {"Unidad de Medida", type text}, {"Marca - Sufijos", type text}}),
+				    ItemDespacho = Table.CombineColumns(Tipos, {"Identificador", "Item"}, Combiner.CombineTextByDelimiter("-", QuoteStyle.None), "Ítem Despacho"),
+				    Nombres = Table.RenameColumns(ItemDespacho, {{"U$S FOB", "USD FOB"}, {"Pais de Procedencia", "País de Procedencia"}}),
+				    // Normalizacion de textos con las funciones fnAduana y fnPais
+				    Textos = Table.TransformColumns(Nombres, {
+				        // Algunos nombres de importador traen el guion mal codificado
+				        {"Importador", each Text.Replace(_, "#(00C2)#(00AD)", "-"), type text},
+				        {"Aduana", fnAduana, type text},
+				        {"Via Transporte", each Record.FieldOrDefault([ACUATICA = "Marítima", AVION = "Aéreo", CAMION = "Terrestre"], _, _), type text},
+				        {"País de Origen", fnPais, type text},
+				        {"País de Procedencia", fnPais, type text}
+				    }),
+				    Marca = Table.AddColumn(Textos, "Marca", each fnMarca([#"Marca - Sufijos"]), type text),
+				    SinMarcaCruda = Table.RemoveColumns(Marca, {"Marca - Sufijos"}),
+				    // El articulo sale de la tabla NCM: cada posicion arancelaria corresponde a un articulo
+				    ConNCM = Table.NestedJoin(SinMarcaCruda, {"NCM-SIM"}, NCM, {"NCM-SIM"}, "NCM", JoinKind.LeftOuter),
+				    Articulo = Table.ExpandTableColumn(ConNCM, "NCM", {"Descripcion_NCM"}, {"Artículo"}),
+				    // Cantidad en unidades individuales: 1 par = 2, 1 docena = 12, 1 millar = 1.000
+				    Factores = [UNIDAD = 1, PAR = 2, DOCENA = 12, MILLAR = 1000],
+				    Unidades = Table.AddColumn(Articulo, "Cantidad Unidades", each
+				        let Factor = Record.FieldOrDefault(Factores, [Unidad de Medida], null)
+				        in if Factor = null or [Cantidad] = null then null else [Cantidad] * Factor, Int64.Type),
+				    Orden = Table.ReorderColumns(Unidades, {"Ítem Despacho", "Fecha", "NCM-SIM", "Artículo", "Importador", "Aduana", "Via Transporte", "País de Origen", "País de Procedencia", "USD FOB", "Cantidad", "Unidad de Medida", "Cantidad Unidades", "Marca"}),
+				    // Tipos de datos finales, explícitos para cada columna que se carga al modelo
+				    TiposFinales = Table.TransformColumnTypes(Orden, {{"Ítem Despacho", type text}, {"Fecha", type date}, {"NCM-SIM", type text}, {"Artículo", type text}, {"Importador", type text}, {"Aduana", type text}, {"Via Transporte", type text}, {"País de Origen", type text}, {"País de Procedencia", type text}, {"USD FOB", type number}, {"Cantidad", Int64.Type}, {"Unidad de Medida", type text}, {"Cantidad Unidades", Int64.Type}, {"Marca", type text}})
+				in
+				    TiposFinales
+
+	annotation PBI_ResultType = Table
+

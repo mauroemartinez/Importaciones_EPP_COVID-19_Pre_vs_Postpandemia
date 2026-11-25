@@ -1,0 +1,64 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "4c153ce6e00c35a4e071",
+  "position": {
+    "x": 94,
+    "y": 14,
+    "z": 6000,
+    "height": 56,
+    "width": 300,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "IMPORTACIÓN DE EPP CONTRA EL COVID-19",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9.5pt",
+                      "color": "#FFFFFF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Análisis de Mercado | Portada",
+                    "textStyle": {
+                      "fontSize": "8.5pt",
+                      "color": "#B9A7D6"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

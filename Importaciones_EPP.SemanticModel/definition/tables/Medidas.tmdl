@@ -1,0 +1,104 @@
+/// Tabla contenedora de todas las medidas del modelo.
+table Medidas
+	lineageTag: 1149cb63-3021-4693-b7c2-c4fff08c5672
+
+	/// Valor FOB total en dólares de las importaciones del contexto actual.
+	measure 'Total USD FOB' = SUM ( Importaciones[USD FOB] )
+		formatString: #,0.00
+		displayFolder: 1. Base
+		lineageTag: 77166df9-fb91-59e7-bc7d-1182482ee766
+
+	/// Cantidad importada en unidades individuales (ver columna Cantidad Unidades).
+	measure 'Total Unidades' = SUM ( Importaciones[Cantidad Unidades] )
+		formatString: #,0
+		displayFolder: 1. Base
+		lineageTag: dcb848a9-7548-5556-8e8d-c700a4f50e31
+
+	/// Cantidad de importadores distintos.
+	measure 'Importadores diferentes' = DISTINCTCOUNTNOBLANK ( Importaciones[Importador] )
+		formatString: 0
+		displayFolder: 1. Base
+		lineageTag: bb28a739-c274-44e4-b6ad-df90a07317ce
+
+	/// Valor FOB del período prepandemia (2018 y 2019).
+	measure 'USD FOB Prepandemia' = CALCULATE ( [Total USD FOB], Calendario[Período] = "Prepandemia", REMOVEFILTERS ( Calendario[Orden Período] ) )
+		formatString: #,0.00
+		displayFolder: 2. Períodos
+		lineageTag: 2d9d3bfd-7a12-5f4d-88ff-dd83dbb88707
+
+	/// Valor FOB del período de pandemia (2020 y 2021).
+	measure 'USD FOB Pandemia' = CALCULATE ( [Total USD FOB], Calendario[Período] = "Pandemia", REMOVEFILTERS ( Calendario[Orden Período] ) )
+		formatString: #,0.00
+		displayFolder: 2. Períodos
+		lineageTag: 527c60fa-09f7-5ef9-a201-716650c52893
+
+	/// Unidades importadas en el período prepandemia (2018 y 2019).
+	measure 'Unidades Prepandemia' = CALCULATE ( [Total Unidades], Calendario[Período] = "Prepandemia", REMOVEFILTERS ( Calendario[Orden Período] ) )
+		formatString: #,0
+		displayFolder: 2. Períodos
+		lineageTag: ddb732b4-e61a-5b5b-8039-590128d97e37
+
+	/// Unidades importadas en el período de pandemia (2020 y 2021).
+	measure 'Unidades Pandemia' = CALCULATE ( [Total Unidades], Calendario[Período] = "Pandemia", REMOVEFILTERS ( Calendario[Orden Período] ) )
+		formatString: #,0
+		displayFolder: 2. Períodos
+		lineageTag: 779668e3-6b68-58db-be90-92860197222d
+
+	/// Variación porcentual del valor FOB de la pandemia contra la prepandemia.
+	measure 'Variación USD FOB %' = DIVIDE ( [USD FOB Pandemia] - [USD FOB Prepandemia], [USD FOB Prepandemia] )
+		formatString: 0.0%
+		displayFolder: 2. Períodos
+		lineageTag: d1655ea1-a289-5191-a1a0-592565247a4e
+
+	/// Variación porcentual de las unidades de la pandemia contra la prepandemia.
+	measure 'Variación Unidades %' = DIVIDE ( [Unidades Pandemia] - [Unidades Prepandemia], [Unidades Prepandemia] )
+		formatString: 0.0%
+		displayFolder: 2. Períodos
+		lineageTag: f15bc836-89a2-5d07-9ed9-1fc9b4142858
+
+	/// Beneficiado si el importador compró más en dólares FOB durante la pandemia que antes; Perjudicado en caso contrario.
+	measure 'Beneficiado o Perjudicado' =
+			IF (
+			    [USD FOB Pandemia] > [USD FOB Prepandemia],
+			    "Beneficiado",
+			    "Perjudicado"
+			)
+		displayFolder: 2. Períodos
+		lineageTag: f8ae0094-2083-4c89-a404-7b50a6d1adfe
+
+	/// Valor FOB del mismo período del año anterior.
+	measure 'USD FOB año anterior' = CALCULATE ( [Total USD FOB], SAMEPERIODLASTYEAR ( Calendario[Fecha] ) )
+		formatString: #,0.00
+		displayFolder: 3. Tiempo
+		lineageTag: 569350d4-a582-47b9-9ea7-cb43274a9821
+
+	/// Valor importado en USD FOB o en unidades, según el botón elegido en la página.
+	measure IMPORTADO =
+			SWITCH (
+			    TRIM ( SELECTEDVALUE ( 'Opciones Filtro'[OPCION], "USD FOB" ) ),
+			    "USD FOB", [Total USD FOB],
+			    "CANTIDAD", [Total Unidades]
+			)
+		formatString: #,0
+		displayFolder: 4. Escenarios
+		lineageTag: 155235d1-bacb-5b31-993c-4206fde25b0e
+
+	/// Crecimiento proyectado: aplica el porcentaje de expectativa elegido sobre lo importado.
+	measure PROYECTADO = [IMPORTADO] * [Valor Expectativas]
+		formatString: #,0
+		displayFolder: 4. Escenarios
+		lineageTag: 293c89dc-a145-51eb-9fde-34a4810bb3d4
+
+	partition Medidas = m
+		mode: import
+		queryGroup: Auxiliares
+		source =
+				let
+				    // Tabla sin filas ni columnas: solo agrupa las medidas del modelo
+				    Origen = #table(type table [Columna = text], {}),
+				    SinColumnas = Table.RemoveColumns(Origen, {"Columna"})
+				in
+				    SinColumnas
+
+	annotation PBI_ResultType = Table
+

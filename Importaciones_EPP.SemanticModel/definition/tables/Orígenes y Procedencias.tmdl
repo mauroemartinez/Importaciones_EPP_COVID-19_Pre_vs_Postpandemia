@@ -1,0 +1,43 @@
+/// Países de origen y procedencia, con su continente.
+table 'Orígenes y Procedencias'
+	lineageTag: 662e3fb2-c0ad-4970-ba7f-f509c13af45e
+
+	column Paises
+		dataType: string
+		lineageTag: 070e70ba-826b-46b2-ba48-f271f53e77be
+		summarizeBy: none
+		sourceColumn: Paises
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column Continentes
+		dataType: string
+		lineageTag: 4bcdb2b1-a49a-463a-bab5-69511e05ec90
+		summarizeBy: none
+		sourceColumn: Continentes
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	partition 'Orígenes y Procedencias' = m
+		mode: import
+		queryGroup: Dimensiones
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents(CarpetaDatos & ArchivoDatos), null, true),
+				    Datos = Origen{[Item = "Tabla8", Kind = "Table"]}[Data],
+				    Tipos = Table.TransformColumnTypes(Datos, {{"Paises", type text}, {"Continentes", type text}}),
+				    // Países que aparecen en las importaciones pero no estaban en la tabla original
+				    Faltantes = #table(type table [Paises = text, Continentes = text], {{"Honduras", "América"}, {"Túnez", "África"}, {"Turquía", "Asia"}}),
+				    Completa = Table.Combine({Tipos, Faltantes}),
+				    Normalizados = Table.TransformColumns(Completa, {{"Paises", fnPais, type text}}),
+				    SinDuplicados = Table.Distinct(Normalizados, {"Paises"}),
+				    Ordenados = Table.Sort(SinDuplicados, {{"Paises", Order.Ascending}})
+				in
+				    Ordenados
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,130 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 400,
+            "y": 220
+          },
+          "nodeIndex": "Importaciones",
+          "size": {
+            "height": 380,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 40,
+            "y": 240
+          },
+          "nodeIndex": "Calendario",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 400,
+            "y": 0
+          },
+          "nodeIndex": "NCM",
+          "size": {
+            "height": 190,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 760,
+            "y": 120
+          },
+          "nodeIndex": "Aduanas",
+          "size": {
+            "height": 110,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 760,
+            "y": 420
+          },
+          "nodeIndex": "Orígenes y Procedencias",
+          "size": {
+            "height": 110,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1100,
+            "y": 0
+          },
+          "nodeIndex": "Medidas",
+          "size": {
+            "height": 420,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1100,
+            "y": 450
+          },
+          "nodeIndex": "Opciones Filtro",
+          "size": {
+            "height": 110,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1100,
+            "y": 590
+          },
+          "nodeIndex": "Expectativas",
+          "size": {
+            "height": 110,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 40,
+            "y": 0
+          },
+          "nodeIndex": "FechaActualizacion",
+          "size": {
+            "height": 90,
+            "width": 234
+          },
+          "zIndex": 9
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 80,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

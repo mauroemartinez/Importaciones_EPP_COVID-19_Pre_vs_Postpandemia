@@ -1,0 +1,27 @@
+/// Fecha de corte de los datos. El informe es estático, por eso la fecha es fija.
+table FechaActualizacion
+	lineageTag: 8c8c9488-dd32-4a3e-bd4c-703e916f3f72
+
+	column Fecha
+		dataType: dateTime
+		formatString: d/m/yyyy hh:nn
+		lineageTag: 96851ce2-34ad-4910-b22f-f95450568fd9
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition FechaActualizacion = m
+		mode: import
+		queryGroup: Auxiliares
+		source =
+				let
+				    // Informe estático: fecha y hora del corte de datos del estudio
+				    Origen = #table(type table [Fecha = datetime], {{#datetime(2022, 1, 30, 17, 8, 0)}})
+				in
+				    Origen
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,43 @@
+/// Aduanas de ingreso de la mercadería.
+table Aduanas
+	lineageTag: 36912cd6-9558-4df2-a510-de29d45ff631
+
+	/// Código de la aduana (vacío si no figuraba en la fuente).
+	column ID_Aduana
+		dataType: string
+		lineageTag: bb2f2a09-86ef-49f8-b39d-d1b73ac3e104
+		summarizeBy: none
+		sourceColumn: ID_Aduana
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column Aduana
+		dataType: string
+		lineageTag: 0f176ba8-466e-43ff-9604-8e7ed6e5b6d7
+		summarizeBy: none
+		sourceColumn: Aduana
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	partition Aduanas = m
+		mode: import
+		queryGroup: Dimensiones
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents(CarpetaDatos & ArchivoDatos), null, true),
+				    Hoja = Origen{[Item = "Aduanas", Kind = "Sheet"]}[Data],
+				    Encabezados = Table.PromoteHeaders(Hoja, [PromoteAllScalars = true]),
+				    Tipos = Table.TransformColumnTypes(Encabezados, {{"ID_Aduana", type text}, {"Aduana", type text}}),
+				    // Aduanas que aparecen en las importaciones pero no estaban en la hoja original
+				    Faltantes = #table(type table [ID_Aduana = nullable text, Aduana = text], {{null, "MENDOZA"}, {null, "CORDOBA"}, {null, "PASO DE LOS LIBRES"}}),
+				    Completa = Table.Combine({Tipos, Faltantes}),
+				    Nombres = Table.TransformColumns(Completa, {{"Aduana", fnAduana, type text}})
+				in
+				    Nombres
+
+	annotation PBI_ResultType = Table
+

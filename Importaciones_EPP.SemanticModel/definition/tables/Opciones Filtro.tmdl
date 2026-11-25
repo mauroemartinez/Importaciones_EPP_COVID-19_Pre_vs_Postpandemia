@@ -1,0 +1,36 @@
+/// Tabla desconectada que alimenta el botón para ver los gráficos en USD FOB o en cantidad.
+table 'Opciones Filtro'
+	lineageTag: 66d7960c-27dd-438d-96c0-1210826f58c4
+
+	column OPCION
+		dataType: string
+		lineageTag: 83f004d6-4b2f-4157-b400-db9408c3ee59
+		summarizeBy: none
+		sourceColumn: OPCION
+		sortByColumn: ORDEN
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column ORDEN
+		dataType: int64
+		formatString: 0
+		lineageTag: a05c084b-d044-4f9e-a249-c12f67e897a7
+		summarizeBy: none
+		sourceColumn: ORDEN
+
+		annotation SummarizationSetBy = User
+
+	partition 'Opciones Filtro' = m
+		mode: import
+		queryGroup: Auxiliares
+		source =
+				let
+				    // Opciones del botón que alterna los gráficos entre valor y cantidad
+				    Origen = #table(type table [OPCION = text, ORDEN = Int64.Type], {{"USD FOB", 1}, {"CANTIDAD", 2}})
+				in
+				    Origen
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ReportSection4a57cddccb17b8acb004",
+  "displayName": "Glosario",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "Pod1",
+    "type": "Default",
+    "parameters": []
+  }
+}

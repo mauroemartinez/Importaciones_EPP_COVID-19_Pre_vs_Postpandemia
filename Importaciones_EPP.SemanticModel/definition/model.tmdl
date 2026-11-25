@@ -1,0 +1,46 @@
+model Model
+	culture: es-AR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-AR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Parámetros
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Funciones
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup Hechos
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup Dimensiones
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup Auxiliares
+
+	annotation PBI_QueryGroupOrder = 4
+
+annotation PBI_QueryOrder = ["CarpetaDatos","ArchivoDatos","fnMarca","fnPais","fnAduana","Importaciones","NCM","Aduanas","Orígenes y Procedencias","Medidas","Opciones Filtro","FechaActualizacion"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Importaciones
+ref table Calendario
+ref table NCM
+ref table Aduanas
+ref table 'Orígenes y Procedencias'
+ref table Medidas
+ref table Expectativas
+ref table 'Opciones Filtro'
+ref table FechaActualizacion
+
+ref cultureInfo es-AR
+

@@ -1,0 +1,131 @@
+/// Carpeta donde está la base de datos. Los datos no se incluyen en el repositorio: poné acá la ruta de la carpeta con tu propio Excel.
+expression CarpetaDatos = "C:\Proyectos\Importaciones_EPP_COVID-19_Pre_vs_Postpandemia\data\" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: 1579edd0-786b-5051-8bc0-f497cc043dd8
+	queryGroup: Parámetros
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navegación
+
+/// Nombre del archivo Excel con la base de datos de Softrade.
+expression ArchivoDatos = "importaciones_epp_argentina_2018_2021.xlsx" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: fbdd69c2-38ac-5dbc-bd07-81163b5bd436
+	queryGroup: Parámetros
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navegación
+
+/// Normaliza la marca: quita el prefijo de Softrade, corrige errores de tipeo y agrupa variantes de una misma marca.
+expression fnMarca =
+		let
+		    // Normaliza la marca tal como la entrega Softrade ("MARCA: XXXX")
+		    fnMarca = (marcaCruda as nullable text) as text =>
+		        let
+		            Texto = if marcaCruda = null then "" else Text.Trim(marcaCruda),
+		            Marca = if Text.StartsWith(Texto, "MARCA:") then Text.Upper(Text.Trim(Text.AfterDelimiter(Texto, "MARCA:"))) else "",
+		            // Errores de tipeo puntuales: {valor original, valor correcto}
+		            Equivalencias = {
+		                {"3 M", "3M"}, {"ASNELL", "ANSELL"}, {"DP PROTECCION INDUST", "DP"}, {"DPD", "DPS"},
+		                {"JACKSON SATETY", "JACKSON SAFETY"}, {"MEDEGLOVE", "MEDIGLOVE"}, {"MEDIGLOLVE", "MEDIGLOVE"},
+		                {"SG SEGOD", "SG"}, {"S/", "S/M"}, {"SIN MARCA", "S/M"}
+		            },
+		            // Variantes de una misma marca (líneas de producto, nombres cortados o mal codificados)
+		            Familias = {
+		                {"CHEMMAX", "CHEMMAX"}, {"MICROMAX", "MICROMAX"}, {"SALISBURY", "SALISBURY"},
+		                {"STEELPRO", "STEELPRO"}, {"TYVEK", "TYVEK"}, {"MAPA PROFESS", "MAPA PROFESSIONAL"}, {"VICU", "VICUÑA"}
+		            },
+		            Exacta = List.Select(Equivalencias, each _{0} = Marca),
+		            Familia = List.Select(Familias, each Text.StartsWith(Marca, _{0})),
+		            Resultado =
+		                if Marca = "" then "S/M"
+		                else if not List.IsEmpty(Exacta) then Exacta{0}{1}
+		                else if not List.IsEmpty(Familia) then Familia{0}{1}
+		                else Marca
+		        in
+		            Resultado,
+		    Documentacion = type function (marcaCruda as (type nullable text meta [Documentation.FieldCaption = "Marca tal como viene de Softrade"])) as text
+		        meta [
+		            Documentation.Name = "fnMarca",
+		            Documentation.LongDescription = "Quita el prefijo MARCA:, pasa a mayúsculas, corrige errores de tipeo y agrupa variantes de una misma marca. Devuelve S/M cuando el despacho no informa marca.",
+		            Documentation.Examples = {
+		                [Description = "Error de tipeo", Code = "fnMarca(""MARCA: MEDIGLOLVE"")", Result = """MEDIGLOVE"""],
+		                [Description = "Variante de la misma marca", Code = "fnMarca(""MARCA: CHEMMAX 1 / LAKELAND"")", Result = """CHEMMAX"""],
+		                [Description = "Sin marca informada", Code = "fnMarca(""No disponible"")", Result = """S/M"""]
+		            }
+		        ]
+		in
+		    Value.ReplaceType(fnMarca, Documentacion)
+	lineageTag: b6e01748-1690-54b2-9e06-dbf0fd999c11
+	queryGroup: Funciones
+
+	annotation PBI_ResultType = Function
+
+/// Normaliza nombres de países (mayúsculas, tildes y variantes) para que coincidan con la tabla de países.
+expression fnPais =
+		let
+		    // Normaliza nombres de países para que coincidan con la tabla de países
+		    fnPais = (nombre as nullable text) as nullable text =>
+		        let
+		            Texto = if nombre = null then null else Text.Trim(nombre),
+		            Mayusculas = if Texto = null then null else Text.Upper(Texto),
+		            // Nombres que no se corrigen solo con Text.Proper: {valor en mayúsculas, nombre correcto}
+		            Equivalencias = {
+		                {"ESPA#A", "España"}, {"BELGICA", "Bélgica"}, {"MEXICO", "México"}, {"TAIWAN", "Taiwán"},
+		                {"THAILANDIA", "Tailandia"}, {"PERU", "Perú"}, {"JAPON", "Japón"}, {"PANAMA", "Panamá"},
+		                {"CANADA", "Canadá"}, {"TURQUIA", "Turquía"}, {"TUNEZ", "Túnez"}, {"RUMANIA", "Rumanía"},
+		                {"COREA REPUBLICANA", "Corea del Sur"}, {"COREA DEL SUR", "Corea del Sur"},
+		                {"CAMBOYA (CAMPUCHEA)", "Camboya"}
+		            },
+		            Coincidencias = if Mayusculas = null then {} else List.Select(Equivalencias, each _{0} = Mayusculas),
+		            Resultado =
+		                if Texto = null then null
+		                else if Text.Contains(Mayusculas, "KAMPUCHE") then "Camboya"
+		                else if not List.IsEmpty(Coincidencias) then Coincidencias{0}{1}
+		                else if Texto = Mayusculas then Text.Proper(Texto)
+		                else Texto
+		        in
+		            Resultado,
+		    Documentacion = type function (nombre as (type nullable text meta [Documentation.FieldCaption = "Nombre del país"])) as nullable text
+		        meta [
+		            Documentation.Name = "fnPais",
+		            Documentation.LongDescription = "Unifica los nombres de países: pasa a Nombre Propio los que vienen en mayúsculas, agrega tildes y resuelve variantes (por ejemplo Camboya).",
+		            Documentation.Examples = {
+		                [Description = "Nombre en mayúsculas sin tilde", Code = "fnPais(""MEXICO"")", Result = """México"""],
+		                [Description = "Variante histórica", Code = "fnPais(""Camboya (Campuchea)"")", Result = """Camboya"""]
+		            }
+		        ]
+		in
+		    Value.ReplaceType(fnPais, Documentacion)
+	lineageTag: 0a67c633-9818-5421-b64c-7e37c3a80e42
+	queryGroup: Funciones
+
+	annotation PBI_ResultType = Function
+
+/// Normaliza el nombre de la aduana.
+expression fnAduana =
+		let
+		    // Normaliza el nombre de la aduana de ingreso
+		    fnAduana = (nombre as nullable text) as nullable text =>
+		        let
+		            Base = if nombre = null then null else Text.Proper(Text.Trim(nombre)),
+		            Equivalencias = {{"Cordoba", "Córdoba"}, {"Paso De Los Libres", "Paso de los Libres"}},
+		            Coincidencias = List.Select(Equivalencias, each _{0} = Base),
+		            Resultado = if List.IsEmpty(Coincidencias) then Base else Coincidencias{0}{1}
+		        in
+		            Resultado,
+		    Documentacion = type function (nombre as (type nullable text meta [Documentation.FieldCaption = "Nombre de la aduana"])) as nullable text
+		        meta [
+		            Documentation.Name = "fnAduana",
+		            Documentation.LongDescription = "Pasa el nombre de la aduana a Nombre Propio y corrige tildes y preposiciones.",
+		            Documentation.Examples = {
+		                [Description = "Aduana en mayúsculas", Code = "fnAduana(""PASO DE LOS LIBRES"")", Result = """Paso de los Libres"""]
+		            }
+		        ]
+		in
+		    Value.ReplaceType(fnAduana, Documentacion)
+	lineageTag: c8d3a3c8-e54a-5610-9667-6a2d0d1ea6b7
+	queryGroup: Funciones
+
+	annotation PBI_ResultType = Function
+

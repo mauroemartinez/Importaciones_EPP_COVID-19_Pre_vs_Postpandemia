@@ -1,0 +1,21 @@
+relationship 10fd9925-ad69-4a2e-a9f2-2e8cea1aac9d
+	fromColumn: Importaciones.NCM-SIM
+	toColumn: NCM.NCM-SIM
+
+relationship bc617c34-fc7c-47da-8a0f-4c567d79cf25
+	fromColumn: Importaciones.Aduana
+	toColumn: Aduanas.Aduana
+
+relationship 689a9dd6-6c7b-4efb-89dd-c6c087b9d205
+	fromColumn: Importaciones.'País de Origen'
+	toColumn: 'Orígenes y Procedencias'.Paises
+
+relationship 7120618e-b2bc-4d12-8231-7d1d08c15295
+	isActive: false
+	fromColumn: Importaciones.'País de Procedencia'
+	toColumn: 'Orígenes y Procedencias'.Paises
+
+relationship e2167578-df22-5517-8997-2f8f0b902bae
+	fromColumn: Importaciones.Fecha
+	toColumn: Calendario.Fecha
+

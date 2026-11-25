@@ -1,0 +1,148 @@
+/// Calendario continuo 2018 a 2021, marcado como tabla de fechas. Define los períodos fijos del estudio: Prepandemia (2018 y 2019) y Pandemia (2020 y 2021).
+table Calendario
+	lineageTag: fb86dbf9-7bdb-5f28-8818-04ad9ecd9c93
+	dataCategory: Time
+
+	column Fecha
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: ca37f73e-54a6-50d7-9144-29a438a990fe
+		summarizeBy: none
+		sourceColumn: [Fecha]
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Año
+		dataType: int64
+		formatString: 0
+		lineageTag: 62e79b67-908f-5593-83f3-64575e3ec702
+		summarizeBy: none
+		sourceColumn: [Año]
+
+		annotation SummarizationSetBy = User
+
+	column NroTrimestre
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 67107580-c592-566e-af2d-7469e9849836
+		summarizeBy: none
+		sourceColumn: [NroTrimestre]
+
+		annotation SummarizationSetBy = User
+
+	column Trimestre
+		dataType: string
+		lineageTag: 248efe56-ee0e-525e-88de-741f93586e17
+		summarizeBy: none
+		sourceColumn: [Trimestre]
+		sortByColumn: NroTrimestre
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column NroMes
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 71869624-bed6-5a04-a5b0-03c4c5cffe91
+		summarizeBy: none
+		sourceColumn: [NroMes]
+
+		annotation SummarizationSetBy = User
+
+	column Mes
+		dataType: string
+		lineageTag: 23adde85-0e04-5894-8eaf-848e32f8a04d
+		summarizeBy: none
+		sourceColumn: [Mes]
+		sortByColumn: NroMes
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	/// Primer día de cada mes. Se usa como eje continuo en los gráficos mensuales.
+	column 'Mes y Año'
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 0c6256ef-c991-52b8-b013-9282937dc569
+		summarizeBy: none
+		sourceColumn: [Mes y Año]
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Día
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f8e8b1e-083a-50fd-9223-3fbd5a4ac8dc
+		summarizeBy: none
+		sourceColumn: [Día]
+
+		annotation SummarizationSetBy = User
+
+	/// Prepandemia (2018 y 2019) o Pandemia (2020 y 2021).
+	column Período
+		dataType: string
+		lineageTag: 98024f78-10b4-5ef7-9e79-f4503540e34a
+		summarizeBy: none
+		sourceColumn: [Período]
+		sortByColumn: 'Orden Período'
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isText":true}
+
+	column 'Orden Período'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6e0edd49-4dbc-53b9-b5f2-8f5c8529223d
+		summarizeBy: none
+		sourceColumn: [Orden Período]
+
+		annotation SummarizationSetBy = User
+
+	hierarchy 'Jerarquía de fechas'
+		lineageTag: 5341d23c-da8e-5ce3-99ce-4d69b92ac688
+
+		level Año
+			lineageTag: d3a4e2b5-b7ed-5a40-973d-7e043e61ad99
+			column: Año
+
+		level Trimestre
+			lineageTag: 025e6cdd-b8d2-5e53-acf4-6d8d7d120727
+			column: Trimestre
+
+		level Mes
+			lineageTag: 255f6618-0474-511f-81ce-a08c6639a46f
+			column: Mes
+
+		level Día
+			lineageTag: fb75c86a-7709-5045-9597-c5af98804139
+			column: Día
+
+	partition Calendario = calculated
+		mode: import
+		source =
+				VAR Fechas = CALENDAR ( DATE ( 2018, 1, 1 ), DATE ( 2021, 12, 31 ) )
+				RETURN
+				    ADDCOLUMNS (
+				        SELECTCOLUMNS ( Fechas, "Fecha", [Date] ),
+				        "Año", YEAR ( [Fecha] ),
+				        "NroTrimestre", QUARTER ( [Fecha] ),
+				        "Trimestre", "Trim. " & QUARTER ( [Fecha] ),
+				        "NroMes", MONTH ( [Fecha] ),
+				        "Mes", FORMAT ( [Fecha], "mmmm" ),
+				        "Mes y Año", DATE ( YEAR ( [Fecha] ), MONTH ( [Fecha] ), 1 ),
+				        "Día", DAY ( [Fecha] ),
+				        "Período", IF ( YEAR ( [Fecha] ) <= 2019, "Prepandemia", "Pandemia" ),
+				        "Orden Período", IF ( YEAR ( [Fecha] ) <= 2019, 1, 2 )
+				    )
+

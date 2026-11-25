@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ReportSection347928f309c6303adce0",
+  "displayName": "Evolución Importadores",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "Pod",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "195L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "6e922f19610592a12517",
+      "target": "1b85da09b0a93bc6d388",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6e922f19610592a12517",
+      "target": "7357546180b017b21a01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1b85da09b0a93bc6d388",
+      "target": "7357546180b017b21a01",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1b85da09b0a93bc6d388",
+      "target": "e5601eb408c29b5867e6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b9d3fed60817cba902b0",
+      "target": "6104ced4c0427076a657",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b9d3fed60817cba902b0",
+      "target": "4801ce3060420ebe8536",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c0a869427d0b804973ec",
+      "target": "6104ced4c0427076a657",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c0a869427d0b804973ec",
+      "target": "4801ce3060420ebe8536",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c0a869427d0b804973ec",
+      "target": "b9d3fed60817cba902b0",
+      "type": "NoFilter"
+    }
+  ]
+}

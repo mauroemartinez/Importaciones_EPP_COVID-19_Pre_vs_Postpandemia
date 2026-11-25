@@ -1,0 +1,2005 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Continentes",
+  "name": "Bookmark7801a8ef058269f8b235",
+  "options": {
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "598a548305ca2350c703"
+    ],
+    "suppressActiveSection": true,
+    "suppressDisplay": true
+  },
+  "explorationState": {
+    "version": "1.5",
+    "activeSection": "ReportSection8050ab1a5d31c5e00ce2",
+    "sections": {
+      "ReportSection8050ab1a5d31c5e00ce2": {
+        "visualContainers": {
+          "799c3e49edc3c04553b8": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "c2a6d0f6172238714206": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "bf904588163453130e83": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e373be1d864625220202",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "USD FOB Pandemia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "218fa31a7d9cc5c40e78",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "USD FOB Prepandemia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5711bff05506a02604bd",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Importaciones"
+                            }
+                          },
+                          "Property": "USD FOB"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "gauge",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "USD FOB Pandemia"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "177458c426e0440a8ce1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fc1e2af920094ee44b16",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Unidades Prepandemia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "16cd8dbc882588599a4d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Unidades Pandemia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b165a49581d333174c1d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Importaciones"
+                            }
+                          },
+                          "Property": "Cantidad"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "gauge",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Unidades Pandemia"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "e40d1220795d732a5db1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a80f4923224d07856bca",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Total USD FOB"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3b5f5d20b74db9770d24",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "USD FOB Prepandemia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "272ca83c6eccb5dc1604",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Año"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "kpi",
+              "objects": {}
+            }
+          },
+          "4d6696e5aad4093d6cd4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6b058014aa08b30d406c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Total Unidades"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "781085636447d9b88762",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Año"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4c5d33d4a157db861cd7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Unidades Prepandemia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "kpi",
+              "objects": {}
+            }
+          },
+          "87f62f45a077b8d3a1db": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1e6bf5b2ee7a30ae0d98",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Año"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "db24db75b5572e91636e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Total Unidades"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "kpi",
+              "objects": {}
+            }
+          },
+          "0da47ef7d07ca0482080": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "7325d6fd3d640081084c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Año"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "eb5eef9a7805e6e35e93",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Total USD FOB"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e782142f970c9d07ec3d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "USD FOB Prepandemia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "kpi",
+              "objects": {}
+            }
+          },
+          "3c7712d7d904ec7b9ec3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c3748d97d3c7b47784c2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Año"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "196f54203d790c8039aa",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Unidades Prepandemia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f2003c9b7c3120307e50",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Total Unidades"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "kpi",
+              "objects": {}
+            }
+          },
+          "9cef35ef2da4d1024812": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9a9a5d714b0bd548e635",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendario"
+                        }
+                      },
+                      "Property": "Año"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4976680f15a96d80da7d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "USD FOB Prepandemia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4949409c03d537ce80b6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Total USD FOB"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "kpi",
+              "objects": {}
+            }
+          },
+          "e5b0f96784e8d915210c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bac848b6ac3785407307",
+                  "type": "Advanced",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendario"
+                            }
+                          },
+                          "Hierarchy": "Jerarquía de fechas"
+                        }
+                      },
+                      "Level": "Año"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f3872f73265272641b8e",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendario"
+                            }
+                          },
+                          "Hierarchy": "Jerarquía de fechas"
+                        }
+                      },
+                      "Level": "Trimestre"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fb9836434d6d8019d786",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendario"
+                            }
+                          },
+                          "Hierarchy": "Jerarquía de fechas"
+                        }
+                      },
+                      "Level": "Mes"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1c938a1c2801714e2468",
+                  "type": "Advanced",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendario"
+                            }
+                          },
+                          "Hierarchy": "Jerarquía de fechas"
+                        }
+                      },
+                      "Level": "Día"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "l",
+                                "Entity": "Calendario",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "l"
+                                            }
+                                          },
+                                          "Property": "Año"
+                                        }
+                                      },
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "l"
+                                            }
+                                          },
+                                          "Property": "Trimestre"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2018L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 1'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2018L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 2'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2018L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 3'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2019L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 1'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2019L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 2'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2019L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 3'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2020L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 1'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2020L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 2'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2020L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 3'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2021L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 1'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2021L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 2'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2021L"
+                                          }
+                                        },
+                                        {
+                                          "Literal": {
+                                            "Value": "'Trim. 3'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendario"
+                            }
+                          },
+                          "Hierarchy": "Jerarquía de fechas"
+                        }
+                      },
+                      "Level": "Año"
+                    }
+                  },
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendario"
+                            }
+                          },
+                          "Hierarchy": "Jerarquía de fechas"
+                        }
+                      },
+                      "Level": "Trimestre"
+                    }
+                  }
+                ]
+              },
+              "filterExpressionMetadata": {
+                "expressions": [
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendario"
+                            }
+                          },
+                          "Hierarchy": "Jerarquía de fechas"
+                        }
+                      },
+                      "Level": "Año"
+                    }
+                  },
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Calendario"
+                            }
+                          },
+                          "Hierarchy": "Jerarquía de fechas"
+                        }
+                      },
+                      "Level": "Trimestre"
+                    }
+                  }
+                ],
+                "cachedValueItems": [
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2018L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 1'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2018",
+                      "1": "Trim. 1"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2018L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 2'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2018",
+                      "1": "Trim. 2"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2018L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 3'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2018",
+                      "1": "Trim. 3"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2019L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 1'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2019",
+                      "1": "Trim. 1"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2019L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 2'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2019",
+                      "1": "Trim. 2"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2019L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 3'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2019",
+                      "1": "Trim. 3"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2020L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 1'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2020",
+                      "1": "Trim. 1"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2020L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 2'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2020",
+                      "1": "Trim. 2"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2020L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 3'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2020",
+                      "1": "Trim. 3"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2021L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 1'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2021",
+                      "1": "Trim. 1"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2021L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 2'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2021",
+                      "1": "Trim. 2"
+                    }
+                  },
+                  {
+                    "identities": [
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Año"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2021L"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "scopeId": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "Calendario"
+                                  }
+                                },
+                                "Property": "Trimestre"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'Trim. 3'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "valueMap": {
+                      "0": "2021",
+                      "1": "Trim. 3"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Values"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "Calendario.Jerarquía de fechas.Año"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "Calendario"
+                              }
+                            },
+                            "Property": "Año"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Calendario.Jerarquía de fechas.Trimestre"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Calendario.Jerarquía de fechas.Mes"
+                      ],
+                      "isCollapsed": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Calendario.Jerarquía de fechas.Día"
+                      ],
+                      "isCollapsed": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null,
+                    "children": [
+                      {
+                        "identityValues": [
+                          {
+                            "Literal": {
+                              "Value": "2018L"
+                            }
+                          }
+                        ],
+                        "isToggled": true
+                      },
+                      {
+                        "identityValues": [
+                          {
+                            "Literal": {
+                              "Value": "2019L"
+                            }
+                          }
+                        ],
+                        "isToggled": true
+                      },
+                      {
+                        "identityValues": [
+                          {
+                            "Literal": {
+                              "Value": "2020L"
+                            }
+                          }
+                        ],
+                        "isToggled": true
+                      },
+                      {
+                        "identityValues": [
+                          {
+                            "Literal": {
+                              "Value": "2021L"
+                            }
+                          }
+                        ],
+                        "isToggled": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "5090984305c37504db45": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f9e54a270e38cc6b01a5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Importaciones"
+                        }
+                      },
+                      "Property": "Via Transporte"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "22fef5bc86548545138a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Importaciones"
+                            }
+                          },
+                          "Property": "USD FOB"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "treemap",
+              "objects": {},
+              "activeProjections": {
+                "Group": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Importaciones"
+                        }
+                      },
+                      "Property": "Via Transporte"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "598a548305ca2350c703": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1be1b35f9878194e1502",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Importaciones"
+                            }
+                          },
+                          "Property": "USD FOB"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b12d9916084dddb0e3b4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Orígenes y Procedencias"
+                        }
+                      },
+                      "Property": "Continentes"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7924ebd0c4a7a87301e0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Orígenes y Procedencias"
+                        }
+                      },
+                      "Property": "Paises"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "filledMap",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Orígenes y Procedencias"
+                        }
+                      },
+                      "Property": "Continentes"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "f6ecb3f7118b2b2b5775": {
+            "filters": {
+              "byName": {
+                "Filterdcf5f81834606260bab7": {
+                  "name": "Filterdcf5f81834606260bab7",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "a",
+                        "Entity": "Aduanas",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "a"
+                                    }
+                                  },
+                                  "Property": "Aduana"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Bs.As. (Capital)'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Campana'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Ezeiza'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Rosario'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Aduanas"
+                        }
+                      },
+                      "Property": "Aduana"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              },
+              "byExpr": [
+                {
+                  "name": "e683d7ad4037a97147e9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Importaciones"
+                            }
+                          },
+                          "Property": "USD FOB"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Importaciones"
+                            }
+                          },
+                          "Property": "USD FOB"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Aduanas"
+                        }
+                      },
+                      "Property": "Aduana"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "3083efc570c15ec81b6b": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "4af8ef656e40c6822a22": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "47b484c9a883c2130ab7": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "e1a1f4949debd053db79": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "71e78b2908e0e89e6720",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Importaciones"
+                        }
+                      },
+                      "Property": "Importador"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Importaciones"
+                        }
+                      },
+                      "Property": "Importador"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d0e0c0571dbee2ac0456": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "e5601eb408c29b5867e6": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "a9909384b0c009c8cbd5": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "e9ed24b05cbc26ba3460": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "9c927f6105adc6261148": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "3477bfb354520a784558": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "129fced2ae69c816e0d9": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "9342a65cee22ad136001": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
